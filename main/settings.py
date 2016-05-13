@@ -20,7 +20,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/1.9/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '77jrj%4dp2$=xvu1s2*m(&tk83a1u#a*#3iqx3!fxd4&@j=sbf'
+SECRET_KEY = '77jrj%4dp2$blau1s2*m(&tk83a1u#a*#3iqx3!fxd4&@j=sbf'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -31,6 +31,8 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'caesar.apps.CaesarConfig',
+
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
