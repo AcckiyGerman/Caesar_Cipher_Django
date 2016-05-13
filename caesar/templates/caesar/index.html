@@ -5,6 +5,33 @@
     <title>Caesar cipher</title>
 </head>
 <body>
-    <p1>Hello from caesar!</p1>
+<header>
+    <h1>Зашифруйте или расшифруйте текст на английском языке с помощью шифра цезаря:</h1>
+</header>
+<main>
+    <textarea id="inputText" placeholder="enter your text here"></textarea>
+    <div class="controls">
+        <label>Сдвиг
+            <input type="text"
+                   id="ROTATE"
+                   value="0"
+                   pattern="d{1,2}"
+                   maxlength="2"
+                   style="width:18px;"
+                   title="только цифры">
+        </label>
+        <input type="submit" id="encode" value="зашифровать">
+        <input type="submit" id="decode" value="расшифровать"
+    </div>
+
+    <textarea id="outputText" readonly="true"></textarea>
+    <hr>
+    <canvas id="Canvas" width="800" height="200"></canvas>
+    <hr>
+    <textarea id="unravelText" placeholder="разгаданный текст"></textarea>
+</main>
+<footer>
+    <p>Made by Dmytro Gierman for <a href="http://light-it.net/">Light-IT</a>
+</footer>
 </body>
 </html>
