@@ -12,26 +12,27 @@
     <h1>Зашифруйте или расшифруйте текст на английском языке с помощью шифра цезаря:</h1>
 </header>
 <main>
-    <textarea id="inputText" placeholder="enter your text here"></textarea>
-    <div class="controls">
-        <label>Сдвиг
-            <input type="text"
-                   id="ROTATE"
-                   value="0"
-                   pattern="d{1,2}"
-                   maxlength="2"
-                   style="width:18px;"
-                   title="только цифры">
-        </label>
-        <input type="submit" id="encode" value="зашифровать">
-        <input type="submit" id="decode" value="расшифровать">
+    <div class="content clearfix">
+        <textarea class="inputText" placeholder="enter your text here"></textarea>
+        <div class="control">
+            <label>Сдвиг
+                <input type="text"
+                       id="ROTATE"
+                       value="0"
+                       pattern="d{1,2}"
+                       maxlength="2"
+                       style="width:18px;"
+                       title="только цифры" >
+            </label><br>
+            <input type="submit" id="encode" value="зашифровать"><br>
+            <input type="submit" id="decode" value="расшифровать"><br>
+        </div>
+        <textarea class="outputText" readonly="true"></textarea>
     </div>
-
-    <textarea id="outputText" readonly="true"></textarea>
     <hr>
     <canvas id="Canvas" width="800" height="200"></canvas>
     <hr>
-    <textarea id="unravelText" placeholder="разгаданный текст"></textarea>
+    <textarea class="unravelText" placeholder="разгаданный текст"></textarea>
 </main>
 <footer>
     <p>Made by Dmytro Gierman for <a href="http://light-it.net/">Light-IT</a>

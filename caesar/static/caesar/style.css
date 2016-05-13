@@ -1,3 +1,26 @@
 body {
+    padding: 5px;
     background-color: bisque;
+}
+
+html, body, div, textarea { box-sizing: border-box; }
+
+.inputText, .control, .outputText, .unravelText {
+    float: left;
+    height: 150px;
+}
+
+.inputText, .outputText { width: 40%; }
+
+.control {
+    width: 20%;
+    text-align: center;
+}
+
+.unravelText { width: 100%; }
+
+.clearfix:after {
+    content: '';
+    display: table;
+    clear: both;
 }
