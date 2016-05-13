@@ -5,3 +5,11 @@ from django.http import HttpResponse
 
 def index(request):
     return HttpResponse('Hello from Caesar!')
+
+
+def encode(request):
+    return HttpResponse('encoded text')
+
+
+def decode(request):
+    return HttpResponse('decoded text')
