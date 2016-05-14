@@ -17,6 +17,12 @@ html, body, div, textarea { box-sizing: border-box; }
     text-align: center;
 }
 
+.buttons {
+    font-size: 20px;
+    height: 50px;
+    width: 160px;
+}
+
 .unravelText { width: 100%; }
 
 .clearfix:after {
