@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse
+import json
 
-# Create your views here.
 
 def index(request):
     context = {}
@@ -9,7 +9,16 @@ def index(request):
 
 
 def encode(request):
-    return HttpResponse('encoded text')
+    inputText = request.GET['inputText']
+    rotate = request.GET['rotate']
+    # HERE SOME MODEL WORK
+    data = {
+        'outputText': inputText,
+        'frequencyDict': 'frequencyDict',
+        'unravelText': 'unravelText'
+    }
+    jsonData = json.dumps(data)
+    return HttpResponse(jsonData, content_type='application/json')
 
 
 def decode(request):

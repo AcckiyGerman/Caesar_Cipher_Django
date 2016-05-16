@@ -6,7 +6,7 @@ body {
     background-color: bisque;
 }
 
-.inputText, .control, .outputText, .unravelText {
+.inputText, .controls, .outputText, .unravelText {
     float: left;
     height: 160px;
     font-size: large;
@@ -14,7 +14,7 @@ body {
 
 .inputText, .outputText { width: 40%; }
 
-.control {
+.controls {
     width: 20%;
     text-align: center;
 }
@@ -40,17 +40,17 @@ body {
 }
 
 @media screen and (max-width: 820px) {
-    .inputText, .control, .outputText {
+    .inputText, .controls, .outputText {
         float: none;
         width: 100%;
     }
-    .control { height: auto; }
+    .controls { height: auto; }
 }
 
 @media screen and (orientation: portrait) { /* mobile */
-       .inputText, .control, .outputText {
+       .inputText, .controls, .outputText {
         float: none;
         width: 100%;
     }
-    .control { height: auto; }
+    .controls { height: auto; }
 }

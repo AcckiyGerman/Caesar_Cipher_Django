@@ -13,8 +13,9 @@
 </header>
 <main>
     <div class="content clearfix">
+        {% csrf_token %}
         <textarea class="inputText" placeholder="enter your text here"></textarea>
-        <div class="control">
+        <div class="controls">
             <label>Сдвиг
                 <input type="text"
                        id="rotate"
@@ -29,12 +30,14 @@
         <textarea class="outputText" readonly="true"></textarea>
     </div>
     <hr>
-    <canvas id="Canvas" width="800" height="200"></canvas>
+    <canvas id="canvas" width="800" height="200"></canvas>
     <hr>
     <textarea class="unravelText" placeholder="разгаданный текст"></textarea>
 </main>
 <footer>
     <p>Made by Dmytro Gierman for <a href="http://light-it.net/">Light-IT</a>
 </footer>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script src="{% static 'caesar/frontend.js' %}"></script>
 </body>
 </html>
