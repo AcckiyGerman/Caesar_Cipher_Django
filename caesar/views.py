@@ -12,7 +12,7 @@ def encode(request):
     jsonData = request.GET['jsonData']
     data = json.loads(jsonData)
     inputText = data['inputText']
-    rotate = data['rotate']
+    rotate = int(data['rotate'])
     # HERE SOME MODEL WORK
     data = {
         'outputText': inputText,

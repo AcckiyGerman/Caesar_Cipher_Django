@@ -19,7 +19,6 @@ function collectData(){
 function sendRequest(adress){
     var data = collectData();
     if ( !data ){ return }  // Nothing to send.
-    console.log(data);
     $.ajax({
         type: 'GET',
         url: adress,
@@ -32,8 +31,9 @@ function sendRequest(adress){
 
 function onResponse(response){
     var data = JSON.parse(response);
-    $('.outputText').val(data['outputText']);
-    $('.unravelText').val(data['unravelText']);
+    // placing data into the proper fields:
+    $('.outputText').val( data['outputText'] );
+    $('.unravelText').val( data['unravelText'] );
     drawDiagram(data['frequencyDict']);
 }
 
