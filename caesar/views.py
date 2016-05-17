@@ -9,8 +9,10 @@ def index(request):
 
 
 def encode(request):
-    inputText = request.GET['inputText']
-    rotate = request.GET['rotate']
+    jsonData = request.GET['jsonData']
+    data = json.loads(jsonData)
+    inputText = data['inputText']
+    rotate = data['rotate']
     # HERE SOME MODEL WORK
     data = {
         'outputText': inputText,
