@@ -28,10 +28,19 @@ class Coder():
     def decode(self, rotate):
         return self.encode(-rotate)
 
-    def frequencyDict(self):
+    def frequency_dict(self):
         """
         Calculates frequency of symbols in text (only symbols from ALPHABET)
         :return: dict{ symbol: frequency, symbol2: frequency2, ...}
         """
         return {symbol: self.message.count(symbol) for symbol in self.message
                 if symbol in ALPHABET}
+
+    def frequency_list(self):
+        """returns list of letters presented in text, sorted by frequency"""
+        frequencyDict = self.frequency_dict()
+        # sorting symbols by value
+        sortedFrequencyDict = sorted(frequencyDict.items(), key=lambda x: x[1], reverse=True)
+        # now we have dict with symbols and values, like that: [('c', 3), ('b', 2), ('a', 1)]
+        # let's return only list of letters (and it is now sorted)
+        return [s for (s, _) in sortedFrequencyDict]
