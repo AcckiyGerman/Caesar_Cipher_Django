@@ -6,11 +6,10 @@ ALPHABET = 'abcdefghijklmnopqrstuvwxyz'
 # actually, here is nothing to store, we just
 # encoding message, not saving it.
 class Coder():
-    def __init__(self, message, rotate):
+    def __init__(self, message):
         self.message = message
-        self.rotate = rotate
 
-    def encode(self):
+    def encode(self, rotate):
         """
         Shifting every symbol in 'message' by 'rotate', if symbol is in ALPHABET.
         Shift is circled
@@ -20,11 +19,14 @@ class Coder():
             if symbol in ALPHABET:
                 # shift is circled to avoid 'index out of range' exception
                 # and also that operation is a part of Caesar cipher :)
-                shift = (ALPHABET.find(symbol) + self.rotate) % len(ALPHABET)
+                shift = (ALPHABET.find(symbol) + rotate) % len(ALPHABET)
                 encoded.append(ALPHABET[shift])
             else:
                 encoded.append(symbol)
         return ''.join(encoded)
+
+    def decode(self, rotate):
+        return self.encode(-rotate)
 
     def frequencyDict(self):
         """

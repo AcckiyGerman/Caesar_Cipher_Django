@@ -11,9 +11,9 @@ def index(request):
 
 def encode(request):
     inputText, rotate = getCaesarDataFromRequest(request)
-    message = Coder(inputText, rotate)
+    message = Coder(inputText)
     jsonData = json.dumps({
-        'outputText': message.encode(),
+        'outputText': message.encode(rotate),
         'frequencyDict': message.frequencyDict(),
         'unravelText': 'unravelText'
     })
@@ -22,10 +22,9 @@ def encode(request):
 
 def decode(request):
     inputText, rotate = getCaesarDataFromRequest(request)
-    # the "DECODING" operation differents only in negation sign near 'rotate'
-    message = Coder(inputText, -rotate)
+    message = Coder(inputText)
     jsonData = json.dumps({
-        'outputText': message.encode(),
+        'outputText': message.decode(rotate),
         'frequencyDict': message.frequencyDict(),
         'unravelText': 'unravelText'
     })
@@ -34,9 +33,8 @@ def decode(request):
 
 # it is not a view, just helping func
 def getCaesarDataFromRequest(request):
-    """ collects specified data from json """
+    """ collects specified data from json.
+    :returns inputText, rotate """
     jsonData = request.GET['jsonData']
     data = json.loads(jsonData)
-    inputText = data['inputText']
-    rotate = int(data['rotate'])
-    return inputText, rotate
+    return data['inputText'], int(data['rotate'])
