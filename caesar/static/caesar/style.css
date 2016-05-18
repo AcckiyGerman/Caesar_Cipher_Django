@@ -33,6 +33,11 @@ body {
 
 .unravelText { width: 100%; }
 
+#canvas {
+    width: 100%;
+    height: 200px;
+}
+
 .clearfix:after {
     content: '';
     display: table;
@@ -48,7 +53,7 @@ body {
 }
 
 @media screen and (orientation: portrait) { /* mobile */
-       .inputText, .controls, .outputText {
+    .inputText, .controls, .outputText {
         float: none;
         width: 100%;
     }

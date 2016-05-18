@@ -65,6 +65,6 @@ function drawDiagram(frequencyDict) {
         scene.fillStyle = "orange";
         scene.fillRect(xPos, canvas.height, width - 5, -val*step);
         scene.fillStyle = "black";
-        scene.fillText(symbol, xPos + 7, canvas.height - 5);
+        scene.fillText(symbol, xPos, canvas.height - 5);
     })
 }

@@ -7,7 +7,7 @@ ALPHABET = 'abcdefghijklmnopqrstuvwxyz'
 # encoding message, not saving it.
 class Coder():
     def __init__(self, message):
-        self.message = message
+        self.message = message.lower()  # we don't use capitals
 
     def encode(self, rotate):
         """
@@ -15,7 +15,7 @@ class Coder():
         Shift is circled
         """
         encoded = []
-        for symbol in self.message.lower():  # we don't use capitals
+        for symbol in self.message:
             if symbol in ALPHABET:
                 # shift is circled to avoid 'index out of range' exception
                 # and also that operation is a part of Caesar cipher :)
