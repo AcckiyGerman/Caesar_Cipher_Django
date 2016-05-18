@@ -61,3 +61,30 @@ class Coder():
         if F[1] == 't' or F[2] == 't': P += 0.5
         # my probability function :)
         return (P * length/40) >= 1
+
+    def unravel_text(self):
+        """ Trying to restore text from caesar cipher (stored in self.message)
+        :return: text
+        """
+        # First, checking, if message is encoded:
+        if self.is_english():
+            return self.message
+
+        # Second method, based on finding most frequent letter in cipher
+        # (most frequent letter in English is 'e'):
+        M = self.frequency_list()[0]  # most frequent letter
+        pRot = ALPHABET.index(M) - ALPHABET.index('e')  # probably rotate value
+        self.originalMessage = self.message  # remember message
+        self.message = self.decode(pRot)
+        if self.is_english():
+            return self.message + '\nFINDING "E" METHOD, ROTATE = ' + str(pRot)
+
+        # Third method - brute forcing:
+        self.message = self.originalMessage
+        for pRot in range(len(ALPHABET)):
+            self.message = self.decode(1)
+            if self.is_english():
+                return self.message + '\nBRUTE FORCE METHOD, ROTATE = ' + str(pRot+1)
+        # we cant decode message, so let's restore it back
+        self.message = self.originalMessage
+        return "CANT RECOGNIZE MESSAGE :(".upper()
