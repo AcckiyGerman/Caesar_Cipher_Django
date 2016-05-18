@@ -14,8 +14,8 @@ def encode(request):
     message = Coder(inputText)
     jsonData = json.dumps({
         'outputText': message.encode(rotate),
-        'frequencyDict': '',
-        'unravelText': ''
+        'frequencyDict': message.frequency_dict(),
+        'unravelText': message.unravel_text()
     })
     return HttpResponse(jsonData, content_type='application/json')
 
