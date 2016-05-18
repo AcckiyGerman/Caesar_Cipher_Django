@@ -44,3 +44,20 @@ class Coder():
         # now we have dict with symbols and values, like that: [('c', 3), ('b', 2), ('a', 1)]
         # let's return only list of letters (and it is now sorted)
         return [s for (s, _) in sortedFrequencyDict]
+
+    def is_english(self):
+        """ trying to recognize english text. :return: True or False """
+        F = self.frequency_list()
+        if len(F) < 4:
+            return False
+        length = len(self.message) if len(self.message) > 30 else 30
+        # we using 4 most frequent words and 2 most frequent symbols in English
+        P = 0  # Probability
+        P += self.message.count('the') * 1.6
+        P += self.message.count('and') * 0.7
+        P += self.message.count(' a ') * 0.7
+        P += self.message.count('you') * 0.5
+        if F[0] == 'e' or F[1] == 'e': P += 0.7
+        if F[1] == 't' or F[2] == 't': P += 0.5
+        # my probability function :)
+        return (P * length/40) >= 1

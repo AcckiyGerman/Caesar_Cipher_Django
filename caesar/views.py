@@ -26,7 +26,7 @@ def decode(request):
     jsonData = json.dumps({
         'outputText': message.decode(rotate),
         'frequencyDict': message.frequency_dict(),
-        'unravelText': message.frequency_list()
+        'unravelText': message.is_english()
     })
     return HttpResponse(jsonData, content_type='application/json')
 
