@@ -33,7 +33,7 @@ def decode(request):
 
 # it is not a view, just helping func
 def getCaesarDataFromRequest(request):
-    """ collects specified data from json.
+    """ collects specified data from json-request.
     :returns inputText, rotate """
     jsonData = request.GET['jsonData']
     data = json.loads(jsonData)

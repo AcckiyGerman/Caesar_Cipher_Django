@@ -37,6 +37,34 @@ function onResponse(response){
     drawDiagram(data['frequencyDict']);
 }
 
-function drawDiagram(frequencyDict){
-
+function drawDiagram(frequencyDict) {
+    //clearing canvas
+    scene.clearRect(0, 0, canvas.width, canvas.height);
+    //finding max frequency value and sorting symbols
+    var symbols = new Array();
+    var maxVal = 0;
+    for (var s in frequencyDict){
+        symbols.push(s);
+        var val = frequencyDict[s];
+        if (val > maxVal){
+            maxVal = val;
+        }
+    }
+    symbols.sort();
+    //drawing lines
+    scene.fillStyle = "blue";
+    var step = canvas.height / maxVal;
+    for (i=0; i<maxVal; i++){
+        scene.fillRect(0, i*step, canvas.width, 1);
+    }
+    //drawing pikes
+    var width = canvas.width / symbols.length;
+    symbols.forEach(function(symbol, number) {
+        val = frequencyDict[symbol];
+        var xPos = number * width;
+        scene.fillStyle = "orange";
+        scene.fillRect(xPos, canvas.height, width - 5, -val*step);
+        scene.fillStyle = "black";
+        scene.fillText(symbol, xPos + 7, canvas.height - 5);
+    })
 }
