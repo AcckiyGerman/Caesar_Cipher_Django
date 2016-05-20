@@ -44,7 +44,7 @@ body {
     clear: both;
 }
 
-@media screen and (max-width: 820px) {
+@media screen and (max-width: 900px) {
     .inputText, .controls, .outputText {
         float: none;
         width: 100%;
