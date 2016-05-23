@@ -63,29 +63,30 @@ class Coder():
         return (probability * message_length) >= 40
         # '40' taken from experience, after several tries
 
-    def unravel_text(self):
-        """ Trying to restore text from caesar cipher (stored in self.message)
-        :return: text
+    def restore_message(self):
         """
-        # First, checking, if message is encoded:
+        Trying to restore text from caesar cipher (stored in self.message)
+        WARNING: This method will replace self.message, if it can decode one.
+        :return: restored text [+ restore method used + probably_rotate]
+        """
         if self.is_english():
             return self.message
-
-        # Second method, based on finding most frequent letter in cipher
+        original_message = self.message
+        # First method based on finding most frequent letter in cipher
         # (most frequent letter in English is 'e'):
-        M = self.frequency_list()[0]  # most frequent letter
-        pRot = ALPHABET.index(M) - ALPHABET.index('e')  # probably rotate value
-        self.originalMessage = self.message  # remember message
-        self.message = self.decode(pRot)
+        most_frequent_letter = self.frequency_list()[0]
+        probably_rotate = ALPHABET.index(most_frequent_letter) - ALPHABET.index('e')
+        self.message = self.decode(probably_rotate)
         if self.is_english():
-            return self.message + '\nFINDING "E" METHOD, ROTATE = ' + str(pRot)
-
-        # Third method - brute forcing:
-        self.message = self.originalMessage
-        for pRot in range(len(ALPHABET)):
+            return self.message +\
+                '\nFINDING "E" METHOD, ROTATE = ' + str(probably_rotate)
+        # Second method - brute forcing:
+        self.message = original_message
+        for probably_rotate in range(len(ALPHABET)):
             self.message = self.decode(1)
             if self.is_english():
-                return self.message + '\nBRUTE FORCE METHOD, ROTATE = ' + str(pRot+1)
-        # we cant decode message, so let's restore it back
-        self.message = self.originalMessage
-        return "CANT RECOGNIZE MESSAGE :(".upper()
+                return self.message +\
+                    '\nBRUTE FORCE METHOD, ROTATE = ' + str(probably_rotate+1)
+        # failed to decode message - restoring self.message
+        self.message = original_message
+        return "CAN'T RECOGNIZE MESSAGE"

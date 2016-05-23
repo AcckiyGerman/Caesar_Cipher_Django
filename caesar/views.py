@@ -15,7 +15,7 @@ def encode(request):
     jsonData = json.dumps({
         'outputText': message.encode(rotate),
         'frequencyDict': message.frequency_dict(),
-        'unravelText': message.unravel_text()
+        'unravelText': message.restore_message()
     })
     return HttpResponse(jsonData, content_type='application/json')
 
@@ -26,7 +26,7 @@ def decode(request):
     jsonData = json.dumps({
         'outputText': message.decode(rotate),
         'frequencyDict': message.frequency_dict(),
-        'unravelText': message.unravel_text()
+        'unravelText': message.restore_message()
     })
     return HttpResponse(jsonData, content_type='application/json')
 
