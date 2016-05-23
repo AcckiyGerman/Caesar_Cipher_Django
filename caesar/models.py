@@ -2,28 +2,24 @@
 ALPHABET = 'abcdefghijklmnopqrstuvwxyz'
 
 
-# My class will not store any data in database,
-# actually, here is nothing to store, we just
-# encoding message, not saving it.
 class Coder():
     def __init__(self, message):
-        self.message = message.lower()  # we don't use capitals
+        self.message = message.lower()
 
     def encode(self, rotate):
         """
-        Shifting every symbol in 'message' by 'rotate', if symbol is in ALPHABET.
-        Shift is circled
+        Shifting every symbol in 'message' by 'rotate', if symbol is in
+        ALPHABET. Shift is circled.
         """
-        encoded = []
+        encoded_message = []
         for symbol in self.message:
             if symbol in ALPHABET:
-                # shift is circled to avoid 'index out of range' exception
-                # and also that operation is a part of Caesar cipher :)
-                shift = (ALPHABET.find(symbol) + rotate) % len(ALPHABET)
-                encoded.append(ALPHABET[shift])
+                encoded_symbol_index = (ALPHABET.find(symbol) + rotate) %\
+                    len(ALPHABET)
+                encoded_message.append(ALPHABET[encoded_symbol_index])
             else:
-                encoded.append(symbol)
-        return ''.join(encoded)
+                encoded_message.append(symbol)
+        return ''.join(encoded_message)
 
     def decode(self, rotate):
         return self.encode(-rotate)
@@ -38,12 +34,13 @@ class Coder():
 
     def frequency_list(self):
         """returns list of letters presented in text, sorted by frequency"""
-        frequencyDict = self.frequency_dict()
-        # sorting symbols by value
-        sortedFrequencyDict = sorted(frequencyDict.items(), key=lambda x: x[1], reverse=True)
-        # now we have dict with symbols and values, like that: [('c', 3), ('b', 2), ('a', 1)]
-        # let's return only list of letters (and it is now sorted)
-        return [s for (s, _) in sortedFrequencyDict]
+        # for example: self.message = 'abbccc'
+        frequency_dict_items = list(self.frequency_dict().items())
+        # [('b', 2), ('a', 1), ('c', 3)]
+        frequency_dict_items.sort(key=lambda x: x[1], reverse=True)
+        # [('c', 3), ('b', 2), ('a', 1)]
+        return [symbol for (symbol, _) in frequency_dict_items]
+        # ['c', 'b', 'a']
 
     def is_english(self):
         """ trying to recognize english text. :return: True or False """
