@@ -44,20 +44,24 @@ class Coder():
 
     def is_english(self):
         """ trying to recognize english text. :return: True or False """
-        F = self.frequency_list()
-        if len(F) < 4:
-            return False
-        length = len(self.message) if len(self.message) > 30 else 30
-        # we using 4 most frequent words and 2 most frequent symbols in English
-        P = 0  # Probability
-        P += self.message.count('the') * 1.6
-        P += self.message.count('and') * 0.7
-        P += self.message.count(' a ') * 0.7
-        P += self.message.count('you') * 0.5
-        if F[0] == 'e' or F[1] == 'e': P += 0.7
-        if F[1] == 't' or F[2] == 't': P += 0.5
-        # my probability function :)
-        return (P * length/40) >= 1
+        frequency_list = self.frequency_list()
+        probability = 0
+        # Counting usage of 4 most frequent words
+        # and 2 most frequent symbols in English
+        # Coefficients taken from the Wikipedia.
+        probability += self.message.count('the') * 1.6
+        probability += self.message.count('and') * 0.7
+        probability += self.message.count(' a ') * 0.7
+        probability += self.message.count('you') * 0.5
+        if frequency_list[0] == 'e' or frequency_list[1] == 'e':
+            probability += 0.7
+        if frequency_list[1] == 't' or frequency_list[2] == 't':
+            probability += 0.5
+        # We use message length in recognizing formula, but messages, which
+        # are too short, makes formula do false results, so bottom length=30
+        message_length = len(self.message) if len(self.message) > 30 else 30
+        return (probability * message_length) >= 40
+        # '40' taken from experience, after several tries
 
     def unravel_text(self):
         """ Trying to restore text from caesar cipher (stored in self.message)
