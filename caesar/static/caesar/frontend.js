@@ -7,7 +7,7 @@ scene.font = "12pt Arial";
 $('#encode').on('click', function(){ sendRequest('/encode/') });
 $('#decode').on('click', function(){ sendRequest('/decode/') });
 
-/*this func will collect and validate data from fields*/
+/*collect and validate data from fields*/
 function collectData(){
     var input_text = $('.input_text').val();
     if ( !input_text ){ alert('Пожалуйста, введите сообщение!'); return }
@@ -18,7 +18,7 @@ function collectData(){
 
 function sendRequest(adress){
     var data = collectData();
-    if ( !data ){ return }  // Nothing to send.
+    if ( !data ){ return }
     $.ajax({
         type: 'GET',
         url: adress,
@@ -39,7 +39,6 @@ function onResponse(response){
 }
 
 function drawDiagram(frequencyDict) {
-    //clearing canvas
     scene.clearRect(0, 0, canvas.width, canvas.height);
     //finding max frequency value and sorting symbols
     var symbols = new Array();

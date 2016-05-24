@@ -31,7 +31,6 @@ def decode(request):
     return HttpResponse(json_data, content_type='application/json')
 
 
-# it is not a view, just helping func
 def get_caesar_data_from_request(request):
     """ collects specified data from json-request.
     :returns inputText, rotate """
