@@ -14,7 +14,8 @@
 <main>
     <div class="content clearfix">
         {% csrf_token %}
-        <textarea class="inputText" placeholder="enter your text here"></textarea>
+        <textarea class="input_text" placeholder="enter your text here" >
+        </textarea>
         <div class="controls">
             <label>Сдвиг
                 <input type="text"
@@ -27,12 +28,12 @@
             <input class="buttons" type="submit" id="encode" value="зашифровать">
             <input class="buttons" type="submit" id="decode" value="расшифровать">
         </div>
-        <textarea class="outputText" readonly="true"></textarea>
+        <textarea class="output_text" readonly="true"></textarea>
     </div>
     <hr>
     <canvas id="canvas"></canvas>
     <hr>
-    <textarea class="unravelText" placeholder="разгаданный текст"></textarea>
+    <textarea class="restored_text" placeholder="разгаданный текст"></textarea>
 </main>
 <footer>
     <p>Made by Dmytro Gierman for <a href="http://light-it.net/">Light-IT</a><br>

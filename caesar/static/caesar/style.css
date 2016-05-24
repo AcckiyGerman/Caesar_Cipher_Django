@@ -6,13 +6,13 @@ body {
     background-color: bisque;
 }
 
-.inputText, .controls, .outputText, .unravelText {
+.input_text, .controls, .output_text, .restored_text {
     float: left;
     height: 160px;
     font-size: large;
 }
 
-.inputText, .outputText { width: 40%; }
+.input_text, .output_text { width: 40%; }
 
 .controls {
     width: 20%;
@@ -31,7 +31,7 @@ body {
     margin: 5px;
 }
 
-.unravelText { width: 100%; }
+.restored_text { width: 100%; }
 
 #canvas {
     width: 100%;
@@ -45,7 +45,7 @@ body {
 }
 
 @media screen and (max-width: 900px) {
-    .inputText, .controls, .outputText {
+    .input_text, .controls, .output_text {
         float: none;
         width: 100%;
     }
@@ -53,7 +53,7 @@ body {
 }
 
 @media screen and (orientation: portrait) { /* mobile */
-    .inputText, .controls, .outputText {
+    .input_text, .controls, .output_text {
         float: none;
         width: 100%;
     }

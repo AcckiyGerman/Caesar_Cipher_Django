@@ -58,7 +58,7 @@ class Coder():
         if frequency_list[1] == 't' or frequency_list[2] == 't':
             probability += 0.5
         # We use message length in recognizing formula, but messages, which
-        # are too short, makes formula do false results, so bottom length=30
+        # are too short, makes formula do false results, so shortest length=30
         message_length = len(self.message) if len(self.message) > 30 else 30
         return (probability * message_length) >= 40
         # '40' taken from experience, after several tries

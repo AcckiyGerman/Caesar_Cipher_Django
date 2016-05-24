@@ -10,31 +10,31 @@ def index(request):
 
 
 def encode(request):
-    inputText, rotate = getCaesarDataFromRequest(request)
-    message = Coder(inputText)
-    jsonData = json.dumps({
-        'outputText': message.encode(rotate),
-        'frequencyDict': message.frequency_dict(),
-        'unravelText': message.restore_message()
+    input_text, rotate = get_caesar_data_from_request(request)
+    message = Coder(input_text)
+    json_data = json.dumps({
+        'output_text': message.encode(rotate),
+        'frequency_dict': message.frequency_dict(),
+        'restored_text': message.restore_message()
     })
-    return HttpResponse(jsonData, content_type='application/json')
+    return HttpResponse(json_data, content_type='application/json')
 
 
 def decode(request):
-    inputText, rotate = getCaesarDataFromRequest(request)
-    message = Coder(inputText)
-    jsonData = json.dumps({
-        'outputText': message.decode(rotate),
-        'frequencyDict': message.frequency_dict(),
-        'unravelText': message.restore_message()
+    input_text, rotate = get_caesar_data_from_request(request)
+    message = Coder(input_text)
+    json_data = json.dumps({
+        'output_text': message.encode(rotate),
+        'frequency_dict': message.frequency_dict(),
+        'restored_text': message.restore_message()
     })
-    return HttpResponse(jsonData, content_type='application/json')
+    return HttpResponse(json_data, content_type='application/json')
 
 
 # it is not a view, just helping func
-def getCaesarDataFromRequest(request):
+def get_caesar_data_from_request(request):
     """ collects specified data from json-request.
     :returns inputText, rotate """
-    jsonData = request.GET['jsonData']
-    data = json.loads(jsonData)
-    return data['inputText'], int(data['rotate'])
+    json_data = request.GET['json_data']
+    data = json.loads(json_data)
+    return data['input_text'], int(data['rotate'])

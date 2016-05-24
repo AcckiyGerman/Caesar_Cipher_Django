@@ -9,11 +9,11 @@ $('#decode').on('click', function(){ sendRequest('/decode/') });
 
 /*this func will collect and validate data from fields*/
 function collectData(){
-    var inputText = $('.inputText').val();
-    if ( !inputText ){ alert('Пожалуйста, введите сообщение!'); return }
+    var input_text = $('.input_text').val();
+    if ( !input_text ){ alert('Пожалуйста, введите сообщение!'); return }
     var rotate = $('#rotate').val();
     if ( isNaN(rotate) ){ alert('Сдвиг должен быть числом!'); return }
-    return { inputText: inputText, rotate: rotate };
+    return { input_text: input_text, rotate: rotate };
 }
 
 function sendRequest(adress){
@@ -22,7 +22,7 @@ function sendRequest(adress){
     $.ajax({
         type: 'GET',
         url: adress,
-        data: { jsonData: JSON.stringify(data) },
+        data: { json_data: JSON.stringify(data) },
         dataType: 'text',
         cache: false,
         success: onResponse
@@ -31,21 +31,22 @@ function sendRequest(adress){
 
 function onResponse(response){
     var data = JSON.parse(response);
+    console.log(data);
     // placing data into the proper fields:
-    $('.outputText').val( data['outputText'] );
-    $('.unravelText').val( data['unravelText'] );
-    drawDiagram(data['frequencyDict']);
+    $('.output_text').val( data['output_text'] );
+    $('.restored_text').val( data['restored_text'] );
+    drawDiagram(data['frequency_dict']);
 }
 
-function drawDiagram(frequencyDict) {
+function drawDiagram(frequency_dict) {
     //clearing canvas
     scene.clearRect(0, 0, canvas.width, canvas.height);
     //finding max frequency value and sorting symbols
     var symbols = new Array();
     var maxVal = 0;
-    for (var s in frequencyDict){
+    for (var s in frequency_dict){
         symbols.push(s);
-        var val = frequencyDict[s];
+        var val = frequency_dict[s];
         if (val > maxVal){
             maxVal = val;
         }
@@ -54,13 +55,13 @@ function drawDiagram(frequencyDict) {
     //drawing lines
     scene.fillStyle = "blue";
     var step = canvas.height / maxVal;
-    for (i=0; i<maxVal; i++){
+    for (var i=0; i<maxVal; i++){
         scene.fillRect(0, i*step, canvas.width, 1);
     }
     //drawing pikes
     var width = canvas.width / symbols.length;
     symbols.forEach(function(symbol, number) {
-        val = frequencyDict[symbol];
+        val = frequency_dict[symbol];
         var xPos = number * width;
         scene.fillStyle = "orange";
         scene.fillRect(xPos, canvas.height, width - 5, -val*step);
