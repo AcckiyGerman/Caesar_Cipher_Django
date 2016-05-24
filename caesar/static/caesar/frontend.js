@@ -1,7 +1,7 @@
 /*binding canvas*/
 var canvas = document.getElementById('canvas');
 var scene = canvas.getContext('2d');
-scene.font = "14pt Arial";
+scene.font = "12pt Arial";
 
 /*binding handlers on submit buttons*/
 $('#encode').on('click', function(){ sendRequest('/encode/') });
@@ -38,15 +38,15 @@ function onResponse(response){
     drawDiagram(data['frequency_dict']);
 }
 
-function drawDiagram(frequency_dict) {
+function drawDiagram(frequencyDict) {
     //clearing canvas
     scene.clearRect(0, 0, canvas.width, canvas.height);
     //finding max frequency value and sorting symbols
     var symbols = new Array();
     var maxVal = 0;
-    for (var s in frequency_dict){
+    for (var s in frequencyDict){
         symbols.push(s);
-        var val = frequency_dict[s];
+        var val = frequencyDict[s];
         if (val > maxVal){
             maxVal = val;
         }
@@ -55,16 +55,17 @@ function drawDiagram(frequency_dict) {
     //drawing lines
     scene.fillStyle = "blue";
     var step = canvas.height / maxVal;
-    for (var i=0; i<maxVal; i++){
+    for (var i=1; i<maxVal; i++){
         scene.fillRect(0, i*step, canvas.width, 1);
     }
     //drawing pikes
     var width = canvas.width / symbols.length;
+    if (width > 20){ width = 20; }
     symbols.forEach(function(symbol, number) {
-        val = frequency_dict[symbol];
+        val = frequencyDict[symbol];
         var xPos = number * width;
         scene.fillStyle = "orange";
-        scene.fillRect(xPos, canvas.height, width - 5, -val*step);
+        scene.fillRect(xPos, canvas.height, width - 3, -val*step);
         scene.fillStyle = "black";
         scene.fillText(symbol, xPos, canvas.height - 5);
     })
