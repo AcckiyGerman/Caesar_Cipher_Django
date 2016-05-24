@@ -44,7 +44,7 @@ class Coder():
 
     def is_english(self):
         """ trying to recognize english text. :return: True or False """
-        if self.message < 3:
+        if len(self.message) < 3:
             return False
         frequency_list = self.frequency_list()
         probability = 0
