@@ -10,9 +10,9 @@ $('#decode').on('click', function(){ sendRequest('/decode/') });
 /*collect and validate data from fields*/
 function collectData(){
     var input_text = $('.input_text').val();
-    if ( !input_text ){ alert('Пожалуйста, введите сообщение!'); return }
     var rotate = $('#rotate').val();
     if ( isNaN(rotate) ){ alert('Сдвиг должен быть числом!'); return }
+    if ( !input_text ){ alert('Пожалуйста, введите сообщение!'); return }
     return { input_text: input_text, rotate: rotate };
 }
 
@@ -35,6 +35,7 @@ function onResponse(response){
     // placing data into the proper fields:
     $('.output_text').val( data['output_text'] );
     $('.restored_text').val( data['restored_text'] );
+    $('.probably_rotate').text( data['probably_rotate']);
     drawDiagram(data['frequency_dict']);
 }
 
@@ -55,7 +56,7 @@ function drawDiagram(frequencyDict) {
     scene.fillStyle = "blue";
     var step = canvas.height / maxVal;
     for (var i=1; i<maxVal; i++){
-        scene.fillRect(0, i*step, canvas.width, 1);
+        //scene.fillRect(0, i*step, canvas.width, 1);
     }
     //drawing pikes
     var width = canvas.width / symbols.length;

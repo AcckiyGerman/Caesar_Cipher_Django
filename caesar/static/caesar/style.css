@@ -1,18 +1,28 @@
-html, body, div, textarea { box-sizing: border-box; }
+html, body, div, textarea, .buttons {
+    box-sizing: border-box;
+    font-family: 'Amatic SC', cursive;
+    font-size: 20px;
+}
 
 body {
-    font-size: 20px;
-    padding: 15px;
+    padding: 0 15px;
     background-color: bisque;
 }
 
-.input_text, .controls, .output_text, .restored_text {
-    float: left;
-    height: 160px;
-    font-size: large;
+header { margin-bottom: 40px;}
+
+p, h2 {
+    text-align: center;
+    margin-bottom: 5px;
 }
 
-.input_text, .output_text { width: 40%; }
+.input_text, .controls, .output_text {
+    float: left;
+    height: 160px;
+    resize: none;
+}
+
+.input_text, .output_text, .restored_text { width: 40%; }
 
 .controls {
     width: 20%;
@@ -31,12 +41,13 @@ body {
     margin: 5px;
 }
 
-.restored_text { width: 100%; }
-
 #canvas {
     width: 100%;
     height: 200px;
+    border: 1px solid grey;
 }
+
+footer { margin-top: 40px;}
 
 .clearfix:after {
     content: '';
@@ -44,18 +55,32 @@ body {
     clear: both;
 }
 
+.restored_text {
+    margin: 0 30%;
+    height: 160px;
+    resize: none;
+}
+
+.probably_rotate {
+    margin-top: 0px;
+}
+
 @media screen and (max-width: 900px) {
-    .input_text, .controls, .output_text {
+    .input_text, .controls, .output_text, .restored_text {
         float: none;
         width: 100%;
+        margin: 0px;
     }
     .controls { height: auto; }
+    .intro { text-align: left; }
 }
 
 @media screen and (orientation: portrait) { /* mobile */
-    .input_text, .controls, .output_text {
+    .input_text, .controls, .output_text, .restored_text {
         float: none;
         width: 100%;
+        margin: 0px;
     }
+    .intro { text-align: left; }
     .controls { height: auto; }
 }
