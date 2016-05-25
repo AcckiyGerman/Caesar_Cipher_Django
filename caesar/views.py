@@ -1,7 +1,8 @@
 import json
 from django.shortcuts import render
 from django.http import HttpResponse
-from caesar.utils import Coder
+from django.utils import timezone
+from caesar.models import Message
 
 
 def index(request):
@@ -13,10 +14,10 @@ def handler(request):
     # get data
     json_data = request.GET['json_data']
     data = json.loads(json_data)
-    input_text = data['input_text']
+    input_text = data['input_text'].lower()
     rotate = int(data['rotate'])
     # work with data
-    message = Coder(input_text)
+    message = Message(text=input_text, rotate=rotate, date=timezone.now())
     if '/encode/' in request.path:
         output_text = message.encode(rotate)
     elif '/decode/' in request.path:
