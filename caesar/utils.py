@@ -1,5 +1,3 @@
-import json
-
 ALPHABET = 'abcdefghijklmnopqrstuvwxyz'
 
 
@@ -95,11 +93,3 @@ class Coder():
         self.message = original_message
         return (self.message,
                 "can't recognize message")
-
-
-def get_caesar_data_from_request(request):
-    """ collects specified data from json-request.
-    :returns inputText, rotate """
-    json_data = request.GET['json_data']
-    data = json.loads(json_data)
-    return data['input_text'], int(data['rotate'])

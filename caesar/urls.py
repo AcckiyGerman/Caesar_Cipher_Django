@@ -5,6 +5,6 @@ from . import views
 app_name = 'caesar'
 urlpatterns = [
     url(r'^$', views.index, name='index'),
-    url(r'^encode/$', views.encode, name='encode'),
-    url(r'^decode/$', views.decode, name='decode'),
+    url(r'^encode/$', views.handler, name='encode'),
+    url(r'^decode/$', views.handler, name='decode'),
 ]

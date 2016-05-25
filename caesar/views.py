@@ -1,7 +1,7 @@
 import json
 from django.shortcuts import render
 from django.http import HttpResponse
-from caesar.utils import get_caesar_data_from_request, Coder
+from caesar.utils import Coder
 
 
 def index(request):
@@ -9,29 +9,25 @@ def index(request):
     return render(request, 'caesar/index.html', context)
 
 
-def encode(request):
-    input_text, rotate = get_caesar_data_from_request(request)
+def handler(request):
+    # get data
+    json_data = request.GET['json_data']
+    data = json.loads(json_data)
+    input_text = data['input_text']
+    rotate = int(data['rotate'])
+    # work with data
     message = Coder(input_text)
-    restored_message = message.restore_message()
+    if '/encode/' in request.path:
+        output_text = message.encode(rotate)
+    elif '/decode/' in request.path:
+        output_text = message.decode(rotate)
+    frequency_dict = message.frequency_dict()
+    restored_message, probably_rotate = message.restore_message()
+    # send data back to user
     json_data = json.dumps({
-        'output_text': message.encode(rotate),
-        'frequency_dict': message.frequency_dict(),
-        'restored_text': restored_message[0],
-        'probably_rotate': restored_message[1]
+        'output_text': output_text,
+        'frequency_dict': frequency_dict,
+        'restored_text': restored_message,
+        'probably_rotate': probably_rotate
     })
     return HttpResponse(json_data, content_type='application/json')
-
-
-def decode(request):
-    input_text, rotate = get_caesar_data_from_request(request)
-    message = Coder(input_text)
-    restored_message = message.restore_message()
-    json_data = json.dumps({
-        'output_text': message.encode(rotate),
-        'frequency_dict': message.frequency_dict(),
-        'restored_text': restored_message[0],
-        'probably_rotate': restored_message[1]
-    })
-    return HttpResponse(json_data, content_type='application/json')
-
-
