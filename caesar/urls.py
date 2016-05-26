@@ -7,4 +7,5 @@ urlpatterns = [
     url(r'^$', views.index, name='index'),
     url(r'^encode/$', views.handler, name='encode'),
     url(r'^decode/$', views.handler, name='decode'),
+    url(r'^history/$', views.HistoryView.as_view(), name='history'),
 ]

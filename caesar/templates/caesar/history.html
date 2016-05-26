@@ -1,0 +1,7 @@
+{% if messages_list %}
+    {% for message in messages_list %}
+        <p>{{ message.text }}</p>
+    {% endfor %}
+{% else %}
+    <p>No messages yet</p>
+{% endif %}

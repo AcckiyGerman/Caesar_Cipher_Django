@@ -75,11 +75,15 @@ class Message(models.Model):
         """
         if self.is_english():
             return (self.text,
-                    'seems, text is not encoded')
+                    'probably text is not encoded')
         original_message = self.text
+        frequency_list = self.frequency_list()
+        if len(frequency_list) < 3:
+            return ('',
+                    "can't recognize text")
         # First method based on finding most frequent letter in cipher
         # (most frequent letter in English is 'e'):
-        most_frequent_letter = self.frequency_list()[0]
+        most_frequent_letter = frequency_list[0]
         probably_rotate = ALPHABET.index(most_frequent_letter) - ALPHABET.index('e')
         self.text = self.decode(probably_rotate)
         if self.is_english():
@@ -94,5 +98,8 @@ class Message(models.Model):
                         'probably, rotate = ' + str(probably_rotate))
         # failed to decode text - restoring self.text
         self.text = original_message
-        return (self.text,
+        return ('',
                 "can't recognize text")
+
+    def __str__(self):
+        return self.text
