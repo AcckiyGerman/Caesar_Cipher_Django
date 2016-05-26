@@ -32,9 +32,17 @@
     </div>
     <p>Частотная диаграмма:</p>
     <canvas id="canvas"></canvas>
-    <p>Разгаданный компьютером текст:</p>
-    <textarea class="restored_text" disabled="true"></textarea>
-    <p class="probably_rotate"></p>
+    <div class="additional clearfix">
+        <div class = restored_text>
+            <p>Разгаданный компьютером текст:</p>
+            <textarea class="restored_text_box" disabled="true"></textarea>
+            <p class="probably_rotate"></p>
+        </div>
+        <div class="history">
+            <p>История сообщений:</p>
+            <iframe id="iframe" src="{% url 'caesar:history' %}"></iframe>
+        </div>
+    </div>
 </main>
 <footer>
     <p>Made by Dmytro Gierman for <a href="http://light-it.net/">Light-IT</a><br>

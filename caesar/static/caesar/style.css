@@ -16,13 +16,21 @@ p, h2 {
     margin-bottom: 5px;
 }
 
-.input_text, .controls, .output_text {
-    float: left;
-    height: 160px;
-    resize: none;
-}
+textarea { resize: none; }
 
-.input_text, .output_text, .restored_text { width: 40%; }
+.input_text, .controls, .restored_text { float: left; }
+
+.output_text, .history { float: right; }
+
+.input_text, .controls, .output_text { height: 160px; }
+
+.input_text, .output_text, .restored_text, .history { width: 40%; }
+
+.additional textarea, iframe {
+    width: 100%;
+    height: 160px;
+    border: 1px solid grey;
+}
 
 .controls {
     width: 20%;
@@ -55,27 +63,30 @@ footer { margin-top: 40px;}
     clear: both;
 }
 
-.restored_text {
-    margin: 0 30%;
-    height: 160px;
-    resize: none;
-}
 
 .probably_rotate {
     margin-top: 0px;
 }
 
-
-@media screen and (orientation: portrait) { /* mobile */
-    .input_text, .controls, .output_text, .restored_text {
+/* mobile view */
+@media screen and (orientation: portrait) {
+    .input_text, .controls, .output_text, .restored_text, .history {
         float: none;
         width: 100%;
-        margin: 0px;
+    }
+
+    .input_text, .output_text, #canvas {
         height: 5em;
     }
-    .intro { text-align: left; }
     .controls {
         height: auto;
-        margin-bottom: 5px;
+    }
+    
+    .additional textarea, iframe {
+        height: 5em;
+    }
+
+    .intro {
+        text-align: left;
     }
 }

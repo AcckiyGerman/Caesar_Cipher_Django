@@ -42,4 +42,5 @@ class HistoryView(generic.ListView):
 
     def get_queryset(self):
         quantity = Message.objects.count()
-        return Message.objects.order_by('date')[quantity-5:]
+        last_ten_questions_index = quantity if quantity < 10 else quantity - 10
+        return reversed(Message.objects.all()[last_ten_questions_index:])

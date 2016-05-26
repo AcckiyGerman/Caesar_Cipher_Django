@@ -34,9 +34,10 @@ function onResponse(response){
     console.log(data);
     // placing data into the proper fields:
     $('.output_text').val( data['output_text'] );
-    $('.restored_text').val( data['restored_text'] );
+    $('.restored_text_box').val( data['restored_text'] );
     $('.probably_rotate').text( data['probably_rotate']);
     drawDiagram(data['frequency_dict']);
+    $('#iframe')[0].contentWindow.location.reload(true);
 }
 
 function drawDiagram(frequencyDict) {
