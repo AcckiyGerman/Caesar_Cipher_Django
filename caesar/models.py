@@ -8,11 +8,13 @@ class Message(models.Model):
     rotate = models.IntegerField(default=0)
     date = models.DateField()
 
-    def encode(self, rotate):
+    def encode(self, rotate=None):
         """
         Shifting every symbol in 'text' by 'rotate', if symbol is in
         ALPHABET. Shift is circled.
         """
+        if rotate is None:
+            rotate = self.rotate
         encoded_message = []
         for symbol in self.text:
             if symbol in ALPHABET:
@@ -23,7 +25,9 @@ class Message(models.Model):
                 encoded_message.append(symbol)
         return ''.join(encoded_message)
 
-    def decode(self, rotate):
+    def decode(self, rotate=None):
+        if rotate is None:
+            rotate = self.rotate
         return self.encode(-rotate)
 
     def frequency_dict(self):
