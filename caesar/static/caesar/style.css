@@ -22,9 +22,14 @@ textarea { resize: none; }
 
 .output_text, .history { float: right; }
 
-.input_text, .controls, .output_text { height: 160px; }
+.input_text, .controls, .output_text, .restored_text_box { height: 160px; }
 
 .input_text, .output_text, .restored_text, .history { width: 40%; }
+
+.output_text, .restored_text_box {
+    border: 1px solid grey;
+    background-color: lightgrey;
+}
 
 .additional textarea, iframe {
     width: 100%;
@@ -64,7 +69,6 @@ footer { margin-top: 40px;}
     clear: both;
 }
 
-
 .probably_rotate {
     margin-top: 0px;
 }
@@ -76,15 +80,12 @@ footer { margin-top: 40px;}
         width: 100%;
     }
 
-    .input_text, .output_text, #canvas {
+    .input_text, .output_text, #canvas, .restored_text_box, iframe {
         height: 5em;
     }
+
     .controls {
         height: auto;
-    }
-    
-    .additional textarea, iframe {
-        height: 5em;
     }
 
     .intro {
