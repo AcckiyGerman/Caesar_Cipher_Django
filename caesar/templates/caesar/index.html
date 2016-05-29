@@ -12,34 +12,34 @@
     <h2>Шифр Цезаря</h2>
 </header>
 <main>
-    <p class="intro">Зашифруйте или расшифруйте текст на английском языке с помощью шифра цезаря:</p>
+    <p class="intro">Encode or decode English text through the Caesar cipher:</p>
     <div class="content clearfix">
         {% csrf_token %}
         <textarea class="input_text" placeholder="enter your text here"></textarea>
         <div class="controls">
-            <label>Сдвиг
+            <label>Rotate
                 <input type="text"
                        id="rotate"
                        value="0"
                        pattern="\d{1,2}"
                        maxlength="2"
-                       title="только цифры" >
+                       title="Rotate must be a number" >
             </label>
-            <input class="buttons" type="submit" id="encode" value="зашифровать">
-            <input class="buttons" type="submit" id="decode" value="расшифровать">
+            <input class="buttons" type="submit" id="encode" value="encode">
+            <input class="buttons" type="submit" id="decode" value="decode">
         </div>
         <textarea class="output_text" disabled="true" placeholder="encoded message"></textarea>
     </div>
-    <p>Частотная диаграмма:</p>
+    <p>Frequency diagram:</p>
     <canvas id="canvas"></canvas>
     <div class="additional clearfix">
         <div class = restored_text>
-            <p>Разгаданный компьютером текст:</p>
+            <p>Text, restored by computer:</p>
             <textarea class="restored_text_box" disabled="true"></textarea>
             <p class="probably_rotate"></p>
         </div>
         <div class="history">
-            <p>История сообщений:</p>
+            <p>Messages history:</p>
             <iframe id="iframe" src="{% url 'caesar:history' %}"></iframe>
         </div>
     </div>
