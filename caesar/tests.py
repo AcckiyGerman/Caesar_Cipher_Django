@@ -1,7 +1,9 @@
 from django.test import TestCase
 from django.utils import timezone
 from .models import Message, ALPHABET
-# Create your tests here.
+
+now = timezone.now()
+
 
 now = timezone.now()
 
