@@ -22,20 +22,20 @@ textarea { resize: none; }
 
 .output_text, .history { float: right; }
 
-.input_text, .controls, .output_text, .restored_text_box { height: 160px; }
+.input_text, .controls, .output_text, .restored_text_box, iframe {
+    height: 160px;
+    border-radius: 10px;
+}
 
 .input_text, .output_text, .restored_text, .history { width: 40%; }
 
-.output_text, .restored_text_box {
+.output_text, .restored_text_box, iframe {
     border: 1px solid grey;
     background-color: lightgrey;
 }
 
-.additional textarea, iframe {
+iframe {
     width: 100%;
-    height: 160px;
-    border: 1px solid grey;
-    background-color: lightgrey;
 }
 
 .controls {
@@ -53,6 +53,7 @@ textarea { resize: none; }
     height: 50px;
     width: 160px;
     margin: 5px;
+    border-radius: 10px;
 }
 
 #canvas {
