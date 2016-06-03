@@ -4,16 +4,26 @@
 <html>
 <head lang="en">
     <meta charset="UTF-8">
+    <!-- next meta tag parameters helping to make scalable design -->
+    <meta name="viewport" content="
+        width=device-width,
+        initial-scale=1,
+        minimum-scale=1,
+        maximum-scale=1,
+        user-scalable=0
+    " />
     <link rel="stylesheet" type="text/css" href="{% static 'caesar/style.css' %}" />
     <title>Caesar cipher</title>
 </head>
 <body>
 <header>
     <h2>Caesar cipher</h2>
+
 </header>
 <main>
-    <p class="intro">Encode or decode English text through the Caesar cipher:</p>
-    <div class="content clearfix">
+    <p class="intro">Encode or decode English text through the Caesar cipher
+        (don't forget to choose rotate value):</p>
+    <div class="flex-container">
         {% csrf_token %}
         <textarea class="input_text" placeholder="enter your text here"></textarea>
         <div class="controls">
@@ -28,14 +38,14 @@
             <input class="buttons" type="submit" id="encode" value="encode">
             <input class="buttons" type="submit" id="decode" value="decode">
         </div>
-        <div class="output_text"></div>
+        <textarea class="output_text" disabled="true"></textarea>
     </div>
     <p>Frequency diagram:</p>
     <canvas id="canvas"></canvas>
-    <div class="clearfix">
+    <div class="flex-container">
         <div class = restored_text>
-            <p>Text, restored by the computer:</p>
-            <div class="restored_text_box"></div>
+            <p>Text, restored by computer:</p>
+            <textarea class="restored_text_box" disabled="true"></textarea>
             <p class="probably_rotate"></p>
         </div>
         <div class="history">
